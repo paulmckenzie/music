@@ -1,0 +1,24 @@
+ext {
+    junitVersion = "4.11"
+    cucumberVersion = "1.2.3"
+}
+
+group 'paulmckenzie'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+    testCompile group: 'info.cukes', name: 'cucumber-java', version: cucumberVersion
+    testCompile group: 'info.cukes', name: 'cucumber-core', version: cucumberVersion
+    testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumberVersion
+    testCompile group: 'info.cukes', name: 'gherkin', version: cucumberVersion
+}
