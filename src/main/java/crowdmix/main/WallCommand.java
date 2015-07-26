@@ -1,8 +1,6 @@
 package crowdmix.main;
 
 public class WallCommand implements Command {
-    public static final String NullMessage = "Target can not be null";
-
     private final String target;
 
     public WallCommand(String target) {

@@ -1,7 +1,6 @@
 package crowdmix.main;
 
 public class PostMessageCommand implements Command {
-    static final String NullMessage = "Cannot create a post message command with a null target or message";
     private final String target;
     private final String message;
 

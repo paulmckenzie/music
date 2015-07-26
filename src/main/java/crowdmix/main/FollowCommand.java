@@ -1,7 +1,6 @@
 package crowdmix.main;
 
 public class FollowCommand implements Command {
-    static final String NullMessage = "FFF";
     private final String target;
     private final String follows;
 

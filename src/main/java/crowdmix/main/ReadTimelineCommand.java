@@ -1,7 +1,6 @@
 package crowdmix.main;
 
 public class ReadTimelineCommand implements Command {
-    public static final String NullMessage = "Target can not be null";
 
     private final String target;
 

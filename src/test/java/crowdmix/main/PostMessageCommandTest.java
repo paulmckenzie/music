@@ -6,17 +6,13 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static crowdmix.main.PostMessageCommand.NullMessage;
+import static crowdmix.main.Users.BOB;
+import static org.junit.Assert.assertEquals;
 
 public class PostMessageCommandTest {
-    private static final String target = "Bob";
     private static final String message = "Good Game Though!";
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    @Test
-    public void canCreateCommand() throws Exception {
-        new PostMessageCommand(target, message);
-    }
 
     @Test
     public void cannotCreateCommandWithNullTarget() throws Exception {
@@ -29,16 +25,16 @@ public class PostMessageCommandTest {
     public void cannotCreateCommandWithNullMessage() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage(NullMessage);
-        new PostMessageCommand(target, null);
+        new PostMessageCommand(BOB, null);
     }
 
     @Test
     public void canReadTargetAfterCreation() throws Throwable {
-        Assert.assertEquals(target, new PostMessageCommand(target, message).getTarget());
+        assertEquals(BOB, new PostMessageCommand(BOB, message).getTarget());
     }
 
     @Test
     public void canReadMessageAfterCreation() throws Throwable {
-        Assert.assertEquals(message, new PostMessageCommand(target, message).getMessage());
+        assertEquals(message, new PostMessageCommand(BOB, message).getMessage());
     }
 }

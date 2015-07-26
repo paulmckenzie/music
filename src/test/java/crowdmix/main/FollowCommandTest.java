@@ -5,40 +5,35 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static crowdmix.main.FollowCommand.NullMessage;
+import static crowdmix.main.Users.ALICE;
+import static crowdmix.main.Users.CHARLIE;
 import static org.junit.Assert.assertEquals;
 
 public class FollowCommandTest {
-    static final String target = "Charlie";
-    static final String follows = "Alice";
     @Rule
     public ExpectedException thrown = ExpectedException.none();
-
-    @Test
-    public void testCanCreate() throws Exception {
-        new FollowCommand(target, follows);
-    }
 
     @Test
     public void cannotCreateCommandWithNullTarget() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage(NullMessage);
-        new FollowCommand(null, follows);
+        new FollowCommand(null, ALICE);
     }
 
     @Test
     public void cannotCreateCommandWithNullFollows() throws Exception {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage(NullMessage);
-        new FollowCommand(target, null);
+        new FollowCommand(CHARLIE, null);
     }
 
     @Test
     public void testTargetAccessor() throws Exception {
-        assertEquals(target, new FollowCommand(target, follows).getTarget());
+        assertEquals(CHARLIE, new FollowCommand(CHARLIE, ALICE).getTarget());
     }
 
     @Test
     public void testFollowsAccessor() throws Exception {
-        assertEquals(follows, new FollowCommand(target, follows).getFollows());
+        assertEquals(ALICE, new FollowCommand(CHARLIE, ALICE).getFollows());
     }
 }
