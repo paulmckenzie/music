@@ -11,7 +11,6 @@ public class PostMessageCommand implements Command {
         this.message = message;
     }
 
-
     @Override
     public String getTarget() {
         return target;
