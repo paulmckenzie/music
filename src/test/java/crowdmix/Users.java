@@ -1,4 +1,4 @@
-package crowdmix.main;
+package crowdmix;
 
 public class Users {
     public static final String ALICE = "Alice";
