@@ -5,7 +5,7 @@ public class MessagePostedEvent implements Event {
     private final Long timestamp;
     private final String message;
 
-    public MessagePostedEvent(String userName, Long timestamp, String message) {
+    public MessagePostedEvent(final String userName, final Long timestamp, final String message) {
         this.userName = userName;
         this.timestamp = timestamp;
         this.message = message;

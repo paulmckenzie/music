@@ -5,23 +5,23 @@ import crowdmix.main.TimeProvider;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EventParser {
+class EventParser {
     private final TimeProvider timeProvider;
 
-    static final Pattern EventParserRegex = Pattern.compile("(\\w+)\\s*(wall|follows|->)?\\s?(.+)?");
+    private static final Pattern EventParserRegex = Pattern.compile("(\\w+)\\s*(wall|follows|->)?\\s?(.+)?");
 
-    public EventParser(TimeProvider timeProvider) {
+    EventParser(final TimeProvider timeProvider) {
         this.timeProvider = timeProvider;
     }
 
-    public Event parseEvent(String messageText) {
+    public Event parseEvent(final String messageText) {
         final Matcher matcher = EventParserRegex.matcher(messageText);
         final boolean matches = matcher.matches();
         assert matches;
         return makeEvent(matcher.group(1), EventType.fromToken(matcher.group(2)), matcher.group(3));
     }
 
-    private Event makeEvent(String userName, EventType eventType, String argument) {
+    private Event makeEvent(final String userName, final EventType eventType, final String argument) {
         final Event event;
         switch (eventType) {
             case POST:

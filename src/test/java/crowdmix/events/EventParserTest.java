@@ -1,7 +1,7 @@
 package crowdmix.events;
 
-import crowdmix.events.*;
 import crowdmix.main.TimeProvider;
+import crowdmix.main.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,13 +9,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static crowdmix.Users.ALICE;
-import static crowdmix.Users.BOB;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventParserTest {
-    private final Long aTimeStamp = 29401L;
+    private static final User ALICE = new User("Alice");
     @Mock
     private TimeProvider timeProvider;
     private EventParser parser;
@@ -26,30 +24,31 @@ public class EventParserTest {
     }
 
     @Test
-    public void canParseReadTimelineEvent() throws Throwable {
-        final ReadTimelineEvent event = (ReadTimelineEvent) parser.parseEvent(ALICE);
-        assertEquals(ALICE, event.getUserName());
+    public void canParseReadTimelineEvent() {
+        final ReadTimelineEvent event = (ReadTimelineEvent) parser.parseEvent(ALICE.getUserName());
+        assertEquals(ALICE.getUserName(), event.getUserName());
     }
 
     @Test
-    public void canParseUserFollowsEvent() throws Throwable {
-        final UserFollowsEvent followCommand = (UserFollowsEvent) parser.parseEvent(String.format("%s follows %s", BOB, ALICE));
-        assertEquals(BOB, followCommand.getUserName());
-        assertEquals(ALICE, followCommand.getFollowedUser());
+    public void canParseUserFollowsEvent() {
+        final UserFollowsEvent followCommand = (UserFollowsEvent) parser.parseEvent("BOB follows ALICE");
+        assertEquals("BOB", followCommand.getUserName());
+        assertEquals("ALICE", followCommand.getFollowedUser());
     }
 
     @Test
-    public void canParseWallEvent() throws Throwable {
-        final WallEvent event = (WallEvent) parser.parseEvent(String.format("%s wall", BOB));
-        assertEquals(BOB, event.getUserName());
+    public void canParseWallEvent() {
+        final WallEvent event = (WallEvent) parser.parseEvent("BOB wall");
+        assertEquals("BOB", event.getUserName());
     }
 
     @Test
-    public void canParseMessagePostedEvent() throws Throwable {
+    public void canParseMessagePostedEvent() {
+        final Long aTimeStamp = 29401L;
         Mockito.when(timeProvider.now()).thenReturn(aTimeStamp);
         final String message = "Good game though!";
-        final MessagePostedEvent event = (MessagePostedEvent) parser.parseEvent(String.format("%s -> %s", BOB, message));
-        assertEquals(BOB, event.getUserName());
+        final MessagePostedEvent event = (MessagePostedEvent) parser.parseEvent(String.format("BOB -> %s", message));
+        assertEquals("BOB", event.getUserName());
         assertEquals(aTimeStamp, event.getTimestamp());
         assertEquals(message, event.getMessage());
     }
