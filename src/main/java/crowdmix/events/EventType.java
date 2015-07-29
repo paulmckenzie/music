@@ -6,7 +6,7 @@ import java.util.Map;
 enum EventType {
     POST, WALL, FOLLOW, READ;
 
-    private static final Map<String, EventType> TokenLookupMap = new HashMap<String, EventType>();
+    private static final Map<String, EventType> TokenLookupMap = new HashMap<>();
 
     static {
         TokenLookupMap.put("wall", WALL);

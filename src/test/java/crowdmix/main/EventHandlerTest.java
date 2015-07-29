@@ -72,5 +72,4 @@ public class EventHandlerTest {
         final List<Message> gottenMessages = eventHandler.handle(new ReadTimelineEvent(user1.getUserName()));
         assertEquals(user1Messages, gottenMessages);
     }
-
 }
