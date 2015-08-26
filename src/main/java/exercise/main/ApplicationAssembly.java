@@ -10,7 +10,6 @@ import exercise.repositories.MessageRepository;
 import exercise.repositories.UserRepository;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationAssembly {
@@ -24,10 +23,10 @@ public class ApplicationAssembly {
         final UserRepository userRepository = new InMemoryUserRepository();
         final MessageRepository messageRepository = new InMemoryMessageRepository();
         final Map<InputType, InputHandler> inputHandlers = new EnumMap<>(InputType.class);
-        inputHandlers.put(InputType.POST, new MessagePostingService(messageFactory, userRepository, messageRepository));
-        inputHandlers.put(InputType.READ, new MessageReader(userRepository, messageRepository));
-        inputHandlers.put(InputType.FOLLOW, new UserFollowingService(userRepository));
-        inputHandlers.put(InputType.WALL, new WallService(userRepository, messageRepository));
+        inputHandlers.put(InputType.POST, new MessagePostCommandHandler(messageFactory, userRepository, messageRepository));
+        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository));
+        inputHandlers.put(InputType.FOLLOW, new FollowCommandHandler(userRepository));
+        inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository));
 
         return new MainMessageHandler(new RegexArgumentParser(), inputHandlers);
     }

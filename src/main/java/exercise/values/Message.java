@@ -4,17 +4,23 @@ import java.time.LocalDateTime;
 
 public class Message {
     private final Long id;
+    private final String userName;
     private final String text;
-    private final LocalDateTime timeStamp;
+    private final LocalDateTime timestamp;
 
-    public Message(Long id, String text, LocalDateTime timeStamp) {
+    public Message(Long id, String userName, String text, LocalDateTime timestamp) {
         this.id = id;
+        this.userName = userName;
         this.text = text;
-        this.timeStamp = timeStamp;
+        this.timestamp = timestamp;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getText() {
@@ -22,6 +28,6 @@ public class Message {
     }
 
     public LocalDateTime getTimestamp() {
-        return timeStamp;
+        return timestamp;
     }
 }

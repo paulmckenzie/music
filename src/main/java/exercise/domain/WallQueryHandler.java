@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Stream.concat;
 
-public class WallService implements InputHandler {
+public class WallQueryHandler implements InputHandler {
     private final UserRepository userRepository;
     private final MessageRepository messageRepository;
 
-    public WallService(UserRepository userRepository, MessageRepository messageRepository) {
+    public WallQueryHandler(UserRepository userRepository, MessageRepository messageRepository) {
         this.userRepository = userRepository;
         this.messageRepository = messageRepository;
     }

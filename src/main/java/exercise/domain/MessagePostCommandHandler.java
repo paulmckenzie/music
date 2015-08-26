@@ -10,12 +10,12 @@ import exercise.values.User;
 import java.util.Collections;
 import java.util.List;
 
-public class MessagePostingService implements InputHandler {
+public class MessagePostCommandHandler implements InputHandler {
     private final MessageFactory messageFactory;
     private final UserRepository userRepository;
     private final MessageRepository messageRepository;
 
-    public MessagePostingService(final MessageFactory messageFactory, final UserRepository userRepository, final MessageRepository messageRepository) {
+    public MessagePostCommandHandler(final MessageFactory messageFactory, final UserRepository userRepository, final MessageRepository messageRepository) {
         this.messageFactory = messageFactory;
         this.userRepository = userRepository;
         this.messageRepository = messageRepository;

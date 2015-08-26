@@ -1,9 +1,7 @@
 package exercise.repositories;
 
 import exercise.domain.MessageFactory;
-import exercise.domain.MessagePostingService;
-import exercise.repositories.MessageRepository;
-import exercise.repositories.UserRepository;
+import exercise.domain.MessagePostCommandHandler;
 import exercise.values.InputArgs;
 import exercise.inputs.InputType;
 import exercise.values.Message;
@@ -30,11 +28,11 @@ public class MessagePostingServiceTest {
     @Mock private User user;
     private final InputArgs inputArgs = new InputArgs(InputType.POST, "Alice", Optional.of("Nice weather"));
 
-    private MessagePostingService service;
+    private MessagePostCommandHandler service;
 
     @Before
     public void setUp() throws Exception {
-        service = new MessagePostingService(messageFactory, userRepository, messageRepository);
+        service = new MessagePostCommandHandler(messageFactory, userRepository, messageRepository);
     }
 
     @Test

@@ -1,9 +1,7 @@
 package exercise.repositories;
 
-import exercise.domain.MessageReader;
+import exercise.domain.ReadTimelineQueryHandler;
 import exercise.inputs.InputType;
-import exercise.repositories.MessageRepository;
-import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
 import exercise.values.Message;
 import exercise.values.User;
@@ -22,20 +20,20 @@ import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MessageReaderTest {
+public class ReadTimelineQueryHandlerTest {
 
     private final String userName = "Alice";
-    private final Message m22 = new Message(22L, "Some text", now());
-    private final Message m23 = new Message(23L, "Some other text", now());
+    private final Message m22 = new Message(22L, userName, "Some text", now());
+    private final Message m23 = new Message(23L, userName, "Some other text", now());
     private final InputArgs inputArgs = new InputArgs(InputType.READ, userName, Optional.empty());
     @Mock private UserRepository userRepository;
     @Mock private MessageRepository messageRepository;
     @Mock private User user;
-    private MessageReader reader;
+    private ReadTimelineQueryHandler reader;
 
     @Before
     public void setUp() {
-        reader = new MessageReader(userRepository, messageRepository);
+        reader = new ReadTimelineQueryHandler(userRepository, messageRepository);
     }
 
     @Test

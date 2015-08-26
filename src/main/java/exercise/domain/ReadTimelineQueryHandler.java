@@ -9,11 +9,11 @@ import exercise.values.User;
 
 import java.util.List;
 
-public class MessageReader implements InputHandler {
+public class ReadTimelineQueryHandler implements InputHandler {
     private final UserRepository userRepository;
     private final MessageRepository messageRepository;
 
-    public MessageReader(UserRepository userRepository, MessageRepository messageRepository) {
+    public ReadTimelineQueryHandler(UserRepository userRepository, MessageRepository messageRepository) {
         this.userRepository = userRepository;
         this.messageRepository = messageRepository;
     }

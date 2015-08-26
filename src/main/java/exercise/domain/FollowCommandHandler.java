@@ -9,10 +9,10 @@ import exercise.values.User;
 import java.util.Collections;
 import java.util.List;
 
-public class UserFollowingService implements InputHandler {
+public class FollowCommandHandler implements InputHandler {
     private final UserRepository userRepository;
 
-    public UserFollowingService(UserRepository userRepository) {
+    public FollowCommandHandler(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

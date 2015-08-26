@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -23,7 +22,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class WallServiceTest {
+public class WallQueryHandlerTest {
 
     @Mock private UserRepository userRepository;
     @Mock private MessageRepository messageRepository;
@@ -31,11 +30,11 @@ public class WallServiceTest {
     @Mock private User followedUser1;
     @Mock private User followedUser2;
 
-    private WallService wallService;
+    private WallQueryHandler wallService;
 
     @Before
     public void setUp() throws Exception {
-        wallService = new WallService(userRepository, messageRepository);
+        wallService = new WallQueryHandler(userRepository, messageRepository);
     }
 
     @Test

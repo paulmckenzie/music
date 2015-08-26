@@ -20,11 +20,11 @@ public class UserFollowingServiceTest {
     @Mock private UserRepository userRepository;
     @Mock private User user1 ;
     @Mock private User user2;
-    private UserFollowingService userFollowingService;
+    private FollowCommandHandler followCommandHandler;
 
     @Before
     public void setUp() throws Exception {
-        userFollowingService = new UserFollowingService(userRepository);
+        followCommandHandler = new FollowCommandHandler(userRepository);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UserFollowingServiceTest {
         final String username2 = "another user name";
         when(userRepository.findOrCreate(username2)).thenReturn(user2);
 
-        userFollowingService.handleUserInput(new InputArgs(InputType.FOLLOW, username1, Optional.of(username2)));
+        followCommandHandler.handleUserInput(new InputArgs(InputType.FOLLOW, username1, Optional.of(username2)));
 
         verify(user1).addFollowedUser(user2);
     }

@@ -14,6 +14,6 @@ public class SimpleMessageFactory implements MessageFactory {
 
     @Override
     public Message fromInput(final InputArgs inputArgs) {
-        return new Message(idProvider.nextId(), inputArgs.getArgument().orElseThrow(IllegalArgumentException::new), timeProvider.now());
+        return new Message(idProvider.nextId(), inputArgs.getUsername(), inputArgs.getArgument().orElseThrow(IllegalArgumentException::new), timeProvider.now());
     }
 }

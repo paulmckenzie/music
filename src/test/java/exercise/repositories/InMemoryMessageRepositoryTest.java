@@ -1,6 +1,5 @@
 package exercise.repositories;
 
-import exercise.repositories.InMemoryMessageRepository;
 import exercise.values.Message;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class InMemoryMessageRepositoryTest {
     private InMemoryMessageRepository repository;
+    private final String userName = "Charlie";
 
     @Before
     public void setUp() throws Exception {
@@ -22,8 +22,8 @@ public class InMemoryMessageRepositoryTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void cannotReuseId() {
-        repository.saveMessage(new Message(33L, "Nice wallpaper", now()));
-        repository.saveMessage(new Message(33L, "Wow, and again", now()));
+        repository.saveMessage(new Message(33L, userName, "Nice wallpaper", now()));
+        repository.saveMessage(new Message(33L, userName, "Wow, and again", now()));
     }
 
     @Test
@@ -33,9 +33,9 @@ public class InMemoryMessageRepositoryTest {
 
     @Test
     public void willReturnNonEmptyListForListOfIds() {
-        final Message message33 = new Message(33L, "Nice wallpaper", now());
-        final Message message34 = new Message(34L, "Wow, and again", now());
-        final Message message35 = new Message(35L, "Don't see me", now());
+        final Message message33 = new Message(33L, userName, "Nice wallpaper", now());
+        final Message message34 = new Message(34L, userName, "Wow, and again", now());
+        final Message message35 = new Message(35L, userName, "Don't see me", now());
         repository.saveMessage(message33);
         repository.saveMessage(message34);
         repository.saveMessage(message35);
