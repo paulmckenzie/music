@@ -24,9 +24,12 @@ public class WallService implements InputHandler {
     @Override
     public List<Message> handleUserInput(InputArgs args) {
         final User primaryUser = userRepository.findOrCreate(args.getUsername());
-        final List<Long> postsOfFollowedUsers = primaryUser.getFollowedUsers().stream().flatMap(user -> user.getPostIds().stream()).collect(Collectors.toList());
-        final List<Long> postsOfThisUser = primaryUser.getPostIds();
-        final List<Long> ids = concat(postsOfFollowedUsers.stream(), postsOfThisUser.stream()).sorted().collect(Collectors.toList());
-        return messageRepository.getMessages(ids);
+        final List<Long> postsOfFollowedUsers = primaryUser
+                .getFollowedUsers()
+                .stream()
+                .flatMap(user -> user.getPostIds().stream())
+                .sorted()
+                .collect(Collectors.toList());
+        return messageRepository.getMessages(postsOfFollowedUsers);
     }
 }

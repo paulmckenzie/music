@@ -12,6 +12,7 @@ public class User {
 
     public User(final String userName) {
         this.userName = userName;
+        followedUsers.add(this);
     }
 
     public String getUserName() {
@@ -33,4 +34,6 @@ public class User {
     public void addFollowedUser(User followedUser) {
         followedUsers.add(followedUser);
     }
+
+
 }

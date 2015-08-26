@@ -2,6 +2,8 @@ package exercise.values;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static java.util.Collections.singletonList;
@@ -21,9 +23,12 @@ public class UserTest {
     public void isCreatedWithNoPosts() {
         assertEquals(0, new User(userName).getPostIds().size());
     }
+
     @Test
-    public void isCreatedWithNoFollowedUsers() {
-        assertEquals(0, new User(userName).getFollowedUsers().size());
+    public void isCreatedWithFollowingHerself() {
+        final List<User> followedUsers = new User(userName).getFollowedUsers();
+        assertEquals(1, followedUsers.size());
+        assertEquals(userName, followedUsers.get(0).getUserName());
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -44,6 +49,6 @@ public class UserTest {
         final User user = new User(userName);
         final User otherUser = new User(otherUserName);
         user.addFollowedUser(otherUser);
-        assertEquals(singletonList(otherUser), user.getFollowedUsers());
+        assertEquals(Arrays.asList(user, otherUser), user.getFollowedUsers());
     }
 }
