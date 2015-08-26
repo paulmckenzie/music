@@ -1,5 +1,9 @@
-package exercise.domain;
+package exercise.repositories;
 
+import exercise.domain.MessageFactory;
+import exercise.domain.MessagePostingService;
+import exercise.repositories.MessageRepository;
+import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
 import exercise.inputs.InputType;
 import exercise.values.Message;

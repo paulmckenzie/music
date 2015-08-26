@@ -1,4 +1,4 @@
-package exercise.domain;
+package exercise.repositories;
 
 
 import exercise.values.Message;

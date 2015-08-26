@@ -1,5 +1,6 @@
-package exercise.domain;
+package exercise.repositories;
 
+import exercise.repositories.InMemoryMessageRepository;
 import exercise.values.Message;
 import org.junit.Before;
 import org.junit.Test;

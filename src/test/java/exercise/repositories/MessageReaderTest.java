@@ -1,6 +1,9 @@
-package exercise.domain;
+package exercise.repositories;
 
+import exercise.domain.MessageReader;
 import exercise.inputs.InputType;
+import exercise.repositories.MessageRepository;
+import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
 import exercise.values.Message;
 import exercise.values.User;
