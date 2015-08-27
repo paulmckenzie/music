@@ -32,7 +32,7 @@ public class Application {
             }
         };
 
-        final Sink sink = message -> System.out.println("> " + message.getText());
+        final Sink sink = message -> System.out.println("> " + message);
 
 
         final MessageHandler messageHandler = ApplicationAssembly.makeMessageHandler();

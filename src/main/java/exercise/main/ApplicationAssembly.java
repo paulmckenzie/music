@@ -1,9 +1,7 @@
 package exercise.main;
 
 import exercise.domain.*;
-import exercise.inputs.InputHandler;
-import exercise.inputs.InputType;
-import exercise.inputs.RegexArgumentParser;
+import exercise.inputs.*;
 import exercise.repositories.InMemoryMessageRepository;
 import exercise.repositories.InMemoryUserRepository;
 import exercise.repositories.MessageRepository;
@@ -24,9 +22,9 @@ public class ApplicationAssembly {
         final MessageRepository messageRepository = new InMemoryMessageRepository();
         final Map<InputType, InputHandler> inputHandlers = new EnumMap<>(InputType.class);
         inputHandlers.put(InputType.POST, new MessagePostCommandHandler(messageFactory, userRepository, messageRepository));
-        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository));
+        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter()::format));
         inputHandlers.put(InputType.FOLLOW, new FollowCommandHandler(userRepository));
-        inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository));
+        inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository, new WallMessageFormatter(timeProvider)::format));
 
         return new MainMessageHandler(new RegexArgumentParser(), inputHandlers);
     }

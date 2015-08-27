@@ -7,5 +7,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface InputHandler {
-    List<Message> handleUserInput(InputArgs args);
+    List<String> handleUserInput(InputArgs args);
 }

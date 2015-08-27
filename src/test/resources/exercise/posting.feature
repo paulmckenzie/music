@@ -23,7 +23,7 @@ Feature: A user can publish messages to a personal timeline
       | Damn! we lost!    |
     When Bob follows Alice
     Then the wall messages for Bob are
-      | I love the weather today |
-      | Even the rain            |
-      | Good game though!        |
-      | Damn! we lost!           |
+      | Alice - I love the weather today (0 seconds ago) |
+      | Alice - Even the rain (0 seconds ago)            |
+      | Bob - Good game though! (0 seconds ago)          |
+      | Bob - Damn! we lost! (0 seconds ago)             |

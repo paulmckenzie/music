@@ -17,7 +17,7 @@ public class FollowCommandHandler implements InputHandler {
     }
 
     @Override
-    public List<Message> handleUserInput(final InputArgs args) {
+    public List<String> handleUserInput(final InputArgs args) {
         final User user = userRepository.findOrCreate(args.getUsername());
         final User followedUser = userRepository.findOrCreate(args.getArgument().get());
         user.addFollowedUser(followedUser);

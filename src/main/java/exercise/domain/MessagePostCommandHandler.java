@@ -22,7 +22,7 @@ public class MessagePostCommandHandler implements InputHandler {
     }
 
     @Override
-    public List<Message> handleUserInput(final InputArgs args) {
+    public List<String> handleUserInput(final InputArgs args) {
         final Message message = messageFactory.fromInput(args);
         final User user = userRepository.findOrCreate(args.getUsername());
         user.addPost(message.getId());

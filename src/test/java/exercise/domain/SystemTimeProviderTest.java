@@ -12,7 +12,7 @@ public class SystemTimeProviderTest {
     public void testNow() throws InterruptedException {
         final TimeProvider timeProvider = new SystemTimeProvider();
         final LocalDateTime timestamp1 = timeProvider.now();
-        Thread.sleep(500L);
+        Thread.sleep(50L);
         final LocalDateTime timestamp2 = timeProvider.now();
         assertTrue(timestamp2.isAfter(timestamp1));
     }

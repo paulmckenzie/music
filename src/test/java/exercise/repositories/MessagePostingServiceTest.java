@@ -40,7 +40,7 @@ public class MessagePostingServiceTest {
         when(messageFactory.fromInput(inputArgs)).thenReturn(message);
         when(userRepository.findOrCreate(inputArgs.getUsername())).thenReturn(user);
 
-        final List<Message> messages = service.handleUserInput(inputArgs);
+        final List<String> messages = service.handleUserInput(inputArgs);
 
         assertTrue(messages.isEmpty());
         verify(messageFactory).fromInput(inputArgs);

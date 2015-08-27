@@ -2,6 +2,7 @@ package exercise.repositories;
 
 import exercise.domain.ReadTimelineQueryHandler;
 import exercise.inputs.InputType;
+import exercise.inputs.SimpleMessageFormatter;
 import exercise.values.InputArgs;
 import exercise.values.Message;
 import exercise.values.User;
@@ -23,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 public class ReadTimelineQueryHandlerTest {
 
     private final String userName = "Alice";
+    private final List<String> timelineMessages = asList("Some text", "Some other text");
     private final Message m22 = new Message(22L, userName, "Some text", now());
     private final Message m23 = new Message(23L, userName, "Some other text", now());
     private final InputArgs inputArgs = new InputArgs(InputType.READ, userName, Optional.empty());
@@ -33,7 +35,7 @@ public class ReadTimelineQueryHandlerTest {
 
     @Before
     public void setUp() {
-        reader = new ReadTimelineQueryHandler(userRepository, messageRepository);
+        reader = new ReadTimelineQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter());
     }
 
     @Test
@@ -43,8 +45,8 @@ public class ReadTimelineQueryHandlerTest {
         Mockito.when(userRepository.findOrCreate(user.getUserName())).thenReturn(user);
         Mockito.when(messageRepository.getMessages(asList(22L, 23L))).thenReturn(asList(m22, m23));
 
-        final List<Message> messages = reader.handleUserInput(inputArgs);
+        final List<String> messages = reader.handleUserInput(inputArgs);
 
-        assertEquals(asList(m22, m23), messages);
+        assertEquals(timelineMessages, messages);
     }
 }

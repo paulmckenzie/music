@@ -33,7 +33,7 @@ public class ApplicationTest {
 
     @Test
     public void eventSourceEmitsSomeStringsAndTheyProcessedAndOutput() throws Throwable {
-        final List<Message> messages = Arrays.asList(Mockito.mock(Message.class), Mockito.mock(Message.class));
+        final List<String> messages = Arrays.asList("hey", "now");
         Mockito.when(source.nextInput()).thenReturn("foo").thenReturn(Application.QUIT);
         Mockito.when(messageHandler.handleUserInput("foo")).thenReturn(messages);
 

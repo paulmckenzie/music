@@ -19,7 +19,7 @@ public class MainMessageHandler implements MessageHandler {
     }
 
     @Override
-    public List<Message> handleUserInput(final String input) {
+    public List<String> handleUserInput(final String input) {
         final InputArgs args = argumentParser.parse(input);
         return handlers.get(args.getInputType()).handleUserInput(args);
     }

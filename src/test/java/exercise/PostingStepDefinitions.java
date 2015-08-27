@@ -26,13 +26,13 @@ public class PostingStepDefinitions {
 
     @Then("^the messages for (.+) are$")
     public void showMessages(final String user, final List<String> messages) throws Throwable {
-        final List<String> responses =  messageHandler.handleUserInput(user).stream().map(Message::getText).collect(Collectors.toList());
+        final List<String> responses =  messageHandler.handleUserInput(user);
         Assert.assertEquals(messages, responses);
     }
 
     @Then("^the wall messages for (.+) are$")
     public void wall(final String user, final List<String> messages) throws Throwable {
-        final List<String> responses =  messageHandler.handleUserInput(user + " wall").stream().map(Message::getText).collect(Collectors.toList());
+        final List<String> responses =  messageHandler.handleUserInput(user + " wall");
         Assert.assertEquals(messages, responses);
     }
 }

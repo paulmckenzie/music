@@ -1,6 +1,8 @@
 package exercise.domain;
 
 import exercise.inputs.InputType;
+import exercise.inputs.MessageFormatter;
+import exercise.inputs.SimpleMessageFormatter;
 import exercise.repositories.MessageRepository;
 import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
@@ -34,13 +36,14 @@ public class WallQueryHandlerTest {
 
     @Before
     public void setUp() throws Exception {
-        wallService = new WallQueryHandler(userRepository, messageRepository);
+        wallService = new WallQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter());
     }
 
     @Test
     public void testHandleUserInput() throws Exception {
         final List<User> followedUsers = asList(user, followedUser1, followedUser2);
-        final List<Message> expectedMessages = asList(mock(Message.class), mock(Message.class), mock(Message.class), mock(Message.class));
+        final List<Message> messages = asList(mock(Message.class), mock(Message.class), mock(Message.class), mock(Message.class));
+        messages.forEach(message -> when(message.getText()).thenReturn("A"));
         final String username = "Bob";
 
         when(userRepository.findOrCreate(username)).thenReturn(user);
@@ -48,10 +51,9 @@ public class WallQueryHandlerTest {
         when(user.getPostIds()).thenReturn(singletonList(38L));
         when(followedUser1.getPostIds()).thenReturn(singletonList(41L));
         when(followedUser2.getPostIds()).thenReturn(asList(39L, 40L));
-        when(messageRepository.getMessages(asList(38L, 39L, 40L, 41L))).thenReturn(expectedMessages);
+        when(messageRepository.getMessages(asList(38L, 39L, 40L, 41L))).thenReturn(messages);
 
-        final List<Message> messages = wallService.handleUserInput(new InputArgs(InputType.WALL, username, empty()));
-        assertEquals(expectedMessages, messages);
-
+        final List<String> outputs = wallService.handleUserInput(new InputArgs(InputType.WALL, username, empty()));
+        assertEquals(asList("A", "A", "A", "A"), outputs);
     }
 }
