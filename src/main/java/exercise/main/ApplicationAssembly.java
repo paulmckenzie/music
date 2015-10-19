@@ -17,14 +17,15 @@ public class ApplicationAssembly {
     public static MessageHandler makeMessageHandler() {
         final IdProvider idProvider = new SimpleIdProvider();
         final TimeProvider timeProvider = new SystemTimeProvider();
+        final DurationFormatter durationFormatter = new ElapsedTimeFormatter();
         final MessageFactory messageFactory = new SimpleMessageFactory(idProvider, timeProvider);
         final UserRepository userRepository = new InMemoryUserRepository();
         final MessageRepository messageRepository = new InMemoryMessageRepository();
         final Map<InputType, InputHandler> inputHandlers = new EnumMap<>(InputType.class);
         inputHandlers.put(InputType.POST, new MessagePostCommandHandler(messageFactory, userRepository, messageRepository));
-        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository, new ReadMessageFormatter(timeProvider)::format));
+        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository, new ReadMessageFormatter(timeProvider, durationFormatter)::format));
         inputHandlers.put(InputType.FOLLOW, new FollowCommandHandler(userRepository));
-        inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository, new WallMessageFormatter(timeProvider)::format));
+        inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository, new WallMessageFormatter(timeProvider, durationFormatter)::format));
 
         return new MainMessageHandler(new RegexArgumentParser(), inputHandlers);
     }

@@ -1,41 +1,40 @@
 package exercise.inputs;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import static exercise.inputs.ElapsedTimeFormatter.formatDuration;
 import static org.junit.Assert.assertEquals;
 
 public class ElapsedTimeFormatterTest {
+    private DurationFormatter durationFormatter = new ElapsedTimeFormatter();
     @Test
     public void canFormatOneSecondAgo() {
-        assertEquals("1 second", formatDuration(1));
+        assertEquals("1 second", durationFormatter.formatDuration(1));
     }
 
     @Test
     public void canFormatTwoSecondsAgo() {
-        assertEquals("2 seconds", formatDuration(2));
+        assertEquals("2 seconds", durationFormatter.formatDuration(2));
     }
 
     @Test
     public void canFormat59SecondsAgo() {
-        assertEquals("59 seconds", formatDuration(59));
+        assertEquals("59 seconds", durationFormatter.formatDuration(59));
     }
 
     @Test
     public void canFormat60SecondsAgo() {
-        assertEquals("1 minute", formatDuration(60));
+        assertEquals("1 minute", durationFormatter.formatDuration(60));
 
     }
 
     @Test
     public void canFormat61SecondsAgo() {
-        assertEquals("1 minute", formatDuration(61));
+        assertEquals("1 minute", durationFormatter.formatDuration(61));
     }
 
     @Test
     public void canFormatTwoMinutesAgo() {
-        assertEquals("2 minutes", formatDuration(120));
+        assertEquals("2 minutes", durationFormatter.formatDuration(120));
     }
 
     @Test

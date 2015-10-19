@@ -18,14 +18,15 @@ public class ReadMessageFormatterTest {
     private static final String TEXT = "Lorem ipsum dolor sit amet.";
     private static final String USER_NAME = "Alice";
     private final LocalDateTime now = LocalDateTime.now();
-
+    private final DurationFormatter durationFormatter = new ElapsedTimeFormatter();
     @Mock
     private TimeProvider timeProvider;
+
 
     @Test
     public void canFormat() throws Throwable {
         when(timeProvider.now()).thenReturn(now);
-        final ReadMessageFormatter formatter = new ReadMessageFormatter(timeProvider);
+        final ReadMessageFormatter formatter = new ReadMessageFormatter(timeProvider, durationFormatter);
         final String formattedOutput = formatter.format(aMessage(now.minusSeconds(20)));
         assertEquals(format(ReadMessageFormatter.FORMAT, TEXT, "20 seconds"), formattedOutput);
     }

@@ -1,8 +1,9 @@
 package exercise.inputs;
 
-public class ElapsedTimeFormatter {
+public class ElapsedTimeFormatter implements DurationFormatter {
 
-    static String formatDuration(long seconds) {
+    @Override
+    public String formatDuration(long seconds) {
         return seconds < 60L ? formatSeconds(seconds) : formatMinutes(seconds);
     }
 
