@@ -12,7 +12,7 @@ Feature: A user can publish messages to a personal timeline
       | Damn! we lost! (0 seconds ago)    |
     And the messages for Alice are
       | I love the weather today (0 seconds ago) |
-      | Even the rain (0 seconds ago)experimenta            |
+      | Even the rain (0 seconds ago)            |
 
   Scenario: Following a user allows you to see an aggregated view of all the messages
     Given Alice posts these messages

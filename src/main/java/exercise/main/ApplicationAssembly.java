@@ -22,7 +22,7 @@ public class ApplicationAssembly {
         final MessageRepository messageRepository = new InMemoryMessageRepository();
         final Map<InputType, InputHandler> inputHandlers = new EnumMap<>(InputType.class);
         inputHandlers.put(InputType.POST, new MessagePostCommandHandler(messageFactory, userRepository, messageRepository));
-        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter()::format));
+        inputHandlers.put(InputType.READ, new ReadTimelineQueryHandler(userRepository, messageRepository, new ReadMessageFormatter(timeProvider)::format));
         inputHandlers.put(InputType.FOLLOW, new FollowCommandHandler(userRepository));
         inputHandlers.put(InputType.WALL, new WallQueryHandler(userRepository, messageRepository, new WallMessageFormatter(timeProvider)::format));
 

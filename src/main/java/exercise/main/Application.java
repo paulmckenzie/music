@@ -1,7 +1,5 @@
 package exercise.main;
 
-import exercise.values.Message;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,7 +39,6 @@ public class Application {
     }
 
     public void run() {
-        // TODO see if I can make source emit a stream
         while (true) {
             final String input = source.nextInput();
             if (QUIT.equals(input)) {
