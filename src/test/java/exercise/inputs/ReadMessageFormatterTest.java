@@ -22,7 +22,6 @@ public class ReadMessageFormatterTest {
     @Mock
     private TimeProvider timeProvider;
 
-
     @Test
     public void canFormat() throws Throwable {
         when(timeProvider.now()).thenReturn(now);

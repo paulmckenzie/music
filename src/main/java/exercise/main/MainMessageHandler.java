@@ -1,10 +1,9 @@
 package exercise.main;
 
-import exercise.values.Message;
-import exercise.values.InputArgs;
 import exercise.inputs.InputArgumentParser;
 import exercise.inputs.InputHandler;
 import exercise.inputs.InputType;
+import exercise.values.InputArgs;
 
 import java.util.List;
 import java.util.Map;

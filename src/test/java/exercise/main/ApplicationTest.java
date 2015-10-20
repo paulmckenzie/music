@@ -1,47 +1,34 @@
 package exercise.main;
 
-import exercise.values.Message;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+import static java.util.Arrays.asList;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ApplicationTest {
-    @Mock private Source source;
-    @Mock private Sink sink;
+    @Mock private Consumer<List<String>> sink;
     @Mock private MessageHandler messageHandler;
-    private Application application;
-
-    @Before
-    public void setUp() throws Exception {
-        application = new Application(source, messageHandler, sink);
-    }
-
-    @Test
-    public void eventSourceEmitsQuitAndNothingHappens() throws Throwable {
-        Mockito.when(source.nextInput()).thenReturn(Application.QUIT);
-        application.run();
-        Mockito.verify(source).nextInput();
-        Mockito.verifyNoMoreInteractions(messageHandler, sink);
-    }
 
     @Test
     public void eventSourceEmitsSomeStringsAndTheyProcessedAndOutput() throws Throwable {
-        final List<String> messages = Arrays.asList("hey", "now");
-        Mockito.when(source.nextInput()).thenReturn("foo").thenReturn(Application.QUIT);
-        Mockito.when(messageHandler.handleUserInput("foo")).thenReturn(messages);
+        when(messageHandler.handleUserInput("hey")).thenReturn(asList("one", "two"));
+        when(messageHandler.handleUserInput("now")).thenReturn(asList("three", "four", "five"));
 
+        final Application application = new Application(Stream.of("hey", "now"), messageHandler, sink);
         application.run();
 
-        Mockito.verify(source, Mockito.times(2)).nextInput();
-        Mockito.verify(messageHandler).handleUserInput("foo");
-        messages.forEach(message -> Mockito.verify(sink).printMessage(message));
-        Mockito.verifyNoMoreInteractions(source, messageHandler, sink);
+        verify(messageHandler).handleUserInput("hey");
+        verify(sink).accept(asList("one", "two"));
+        verify(messageHandler).handleUserInput("now");
+        verify(sink).accept(asList("three", "four", "five"));
+        verifyNoMoreInteractions(messageHandler, sink);
     }
 }
