@@ -46,7 +46,7 @@ public class WallQueryHandlerTest {
     }
 
     @Test
-    public void testHandleUsedddrInput() throws Exception {
+    public void testHandleUserInput() throws Exception {
 
         final LocalDateTime now = LocalDateTime.now();
         final Message message38 = new Message(38L, "Bob", "A", now.minus(10, SECONDS));

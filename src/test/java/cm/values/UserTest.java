@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 public class UserTest {
 
     private final String userName = "Charlie";
-    private final String otherUserName = "Bob";
 
     @Test
     public void userNameGetter() {
@@ -47,7 +46,7 @@ public class UserTest {
     @Test
     public void canAddAFollowedUser() {
         final User user = new User(userName);
-        final User otherUser = new User(otherUserName);
+        final User otherUser = new User("Bob");
         user.addFollowedUser(otherUser);
         assertEquals(Arrays.asList(user, otherUser), user.getFollowedUsers());
     }

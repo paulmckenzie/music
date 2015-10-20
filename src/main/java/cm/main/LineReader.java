@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.function.Supplier;
 
 class LineReader implements Supplier<String> {
-    final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
     public String get() {
