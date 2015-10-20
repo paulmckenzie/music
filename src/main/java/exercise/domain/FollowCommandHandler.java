@@ -3,7 +3,6 @@ package exercise.domain;
 import exercise.inputs.InputHandler;
 import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
-import exercise.values.Message;
 import exercise.values.User;
 
 import java.util.Collections;

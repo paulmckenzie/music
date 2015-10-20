@@ -2,8 +2,8 @@ package exercise.repositories;
 
 import exercise.domain.MessageFactory;
 import exercise.domain.MessagePostCommandHandler;
-import exercise.values.InputArgs;
 import exercise.inputs.InputType;
+import exercise.values.InputArgs;
 import exercise.values.Message;
 import exercise.values.User;
 import org.junit.Before;

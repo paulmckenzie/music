@@ -1,7 +1,7 @@
 package exercise.domain;
 
-import exercise.values.InputArgs;
 import exercise.inputs.InputType;
+import exercise.values.InputArgs;
 import exercise.values.Message;
 import org.junit.Before;
 import org.junit.Test;

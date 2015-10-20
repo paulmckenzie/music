@@ -1,7 +1,6 @@
 package exercise.domain;
 
 import exercise.inputs.InputType;
-import exercise.inputs.MessageFormatter;
 import exercise.inputs.SimpleMessageFormatter;
 import exercise.repositories.MessageRepository;
 import exercise.repositories.UserRepository;

@@ -5,7 +5,6 @@ import exercise.inputs.MessageFormatter;
 import exercise.repositories.MessageRepository;
 import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
-import exercise.values.Message;
 import exercise.values.User;
 
 import java.util.List;

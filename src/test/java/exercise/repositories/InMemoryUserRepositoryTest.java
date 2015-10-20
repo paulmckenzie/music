@@ -1,6 +1,5 @@
 package exercise.repositories;
 
-import exercise.repositories.InMemoryUserRepository;
 import exercise.values.User;
 import org.junit.Before;
 import org.junit.Test;

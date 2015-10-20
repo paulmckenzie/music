@@ -2,13 +2,11 @@ package exercise;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import exercise.main.MessageHandler;
 import exercise.main.ApplicationAssembly;
-import exercise.values.Message;
+import exercise.main.MessageHandler;
 import org.junit.Assert;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class PostingStepDefinitions {
