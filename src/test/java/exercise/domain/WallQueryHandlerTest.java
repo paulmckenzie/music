@@ -1,7 +1,6 @@
 package exercise.domain;
 
 import exercise.inputs.InputType;
-import exercise.inputs.SimpleMessageFormatter;
 import exercise.repositories.MessageRepository;
 import exercise.repositories.UserRepository;
 import exercise.values.InputArgs;
@@ -35,7 +34,7 @@ public class WallQueryHandlerTest {
 
     @Before
     public void setUp() throws Exception {
-        wallService = new WallQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter());
+        wallService = new WallQueryHandler(userRepository, messageRepository, Message::getText);
     }
 
     @Test

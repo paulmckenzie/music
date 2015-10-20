@@ -2,7 +2,6 @@ package exercise.repositories;
 
 import exercise.domain.ReadTimelineQueryHandler;
 import exercise.inputs.InputType;
-import exercise.inputs.SimpleMessageFormatter;
 import exercise.values.InputArgs;
 import exercise.values.Message;
 import exercise.values.User;
@@ -35,7 +34,7 @@ public class ReadTimelineQueryHandlerTest {
 
     @Before
     public void setUp() {
-        reader = new ReadTimelineQueryHandler(userRepository, messageRepository, new SimpleMessageFormatter());
+        reader = new ReadTimelineQueryHandler(userRepository, messageRepository, Message::getText);
     }
 
     @Test

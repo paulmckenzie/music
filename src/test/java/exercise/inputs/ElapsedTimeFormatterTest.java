@@ -24,7 +24,6 @@ public class ElapsedTimeFormatterTest {
     @Test
     public void canFormat60SecondsAgo() {
         assertEquals("1 minute", durationFormatter.formatDuration(60));
-
     }
 
     @Test
@@ -36,9 +35,4 @@ public class ElapsedTimeFormatterTest {
     public void canFormatTwoMinutesAgo() {
         assertEquals("2 minutes", durationFormatter.formatDuration(120));
     }
-
-    @Test
-    public void canFormatOneMinuteAgo() {
-    }
-
 }
