@@ -11,7 +11,7 @@ Feature: A user can publish messages to a personal timeline
     And the time is 10:03:10
     Then the messages for Bob are
       | Good game though! (1 minute ago) |
-      | Damn! we lost! (40 seconds ago)    |
+      | Damn! we lost! (40 seconds ago)  |
     And the messages for Alice are
       | I love the weather today (3 minutes ago) |
       | Even the rain (2 minutes ago)            |
@@ -29,5 +29,5 @@ Feature: A user can publish messages to a personal timeline
     Then the wall messages for Bob are
       | Alice - I love the weather today (3 minutes ago) |
       | Alice - Even the rain (2 minutes ago)            |
-      | Bob - Good game though! (1 minute ago)          |
-      | Bob - Damn! we lost! (40 seconds ago)             |
+      | Bob - Good game though! (1 minute ago)           |
+      | Bob - Damn! we lost! (40 seconds ago)            |
