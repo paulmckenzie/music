@@ -34,6 +34,7 @@ public class WallQueryHandler implements InputHandler {
         return messageRepository
                 .getMessages(postsOfFollowedUsers)
                 .stream()
+                .sorted((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()))
                 .map(formatter::format)
                 .collect(toList());
     }

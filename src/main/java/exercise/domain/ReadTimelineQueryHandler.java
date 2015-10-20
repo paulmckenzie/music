@@ -29,6 +29,7 @@ public class ReadTimelineQueryHandler implements InputHandler {
         return messageRepository
                 .getMessages(postIds)
                 .stream()
+                .sorted((m1, m2) -> m2.getTimestamp().compareTo(m1.getTimestamp()))
                 .map(formatter::format)
                 .collect(Collectors.toList());
     }

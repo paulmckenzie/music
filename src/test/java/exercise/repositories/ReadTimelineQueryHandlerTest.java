@@ -12,20 +12,21 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static java.time.LocalDateTime.now;
+import static java.time.temporal.ChronoUnit.SECONDS;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReadTimelineQueryHandlerTest {
 
+    private final LocalDateTime now = LocalDateTime.now();
     private final String userName = "Alice";
-    private final List<String> timelineMessages = asList("Some text", "Some other text");
-    private final Message m22 = new Message(22L, userName, "Some text", now());
-    private final Message m23 = new Message(23L, userName, "Some other text", now());
+    private final Message m22 = new Message(22L, userName, "Message 1", now.minus(10, SECONDS));
+    private final Message m23 = new Message(23L, userName, "Message 2", now);
     private final InputArgs inputArgs = new InputArgs(InputType.READ, userName, Optional.empty());
     @Mock private UserRepository userRepository;
     @Mock private MessageRepository messageRepository;
@@ -45,7 +46,6 @@ public class ReadTimelineQueryHandlerTest {
         Mockito.when(messageRepository.getMessages(asList(22L, 23L))).thenReturn(asList(m22, m23));
 
         final List<String> messages = reader.handleUserInput(inputArgs);
-
-        assertEquals(timelineMessages, messages);
+        assertEquals(asList("Message 2", "Message 1"), messages);
     }
 }

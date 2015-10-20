@@ -16,7 +16,7 @@ public class InMemoryMessageRepository implements MessageRepository {
         if (repo.containsKey(message.getId()))
             throw new IllegalArgumentException("Message already stored with key " + message.getId());
         else
-            repo.put(message.getId(),message);
+            repo.put(message.getId(), message);
     }
 
     @Override
