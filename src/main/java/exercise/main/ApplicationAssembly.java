@@ -15,8 +15,11 @@ public class ApplicationAssembly {
     }
 
     public static MessageHandler makeMessageHandler() {
+        return makeMessageHandler(new SystemTimeProvider());
+    }
+
+    public static MessageHandler makeMessageHandler(final TimeProvider timeProvider) {
         final IdProvider idProvider = new SimpleIdProvider();
-        final TimeProvider timeProvider = new SystemTimeProvider();
         final DurationFormatter durationFormatter = new ElapsedTimeFormatter();
         final MessageFactory messageFactory = new SimpleMessageFactory(idProvider, timeProvider);
         final UserRepository userRepository = new InMemoryUserRepository();
